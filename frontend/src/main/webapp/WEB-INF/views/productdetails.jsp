@@ -39,7 +39,10 @@
 						<div class="caption">
 							<a href="viewproductdetails/${product.product_id}"><button
 									class="btn btn-success">view</button></a>
-							 <input type="button" class="btn btn-primary" value="edit">
+							 <!-- <input type="button" class="btn btn-primary" value="edit"> -->
+							 <a href="editproductdetails/${product.product_id}"><button
+									class="btn btn-success">Edit</button></a>
+							 
 						</div>
 					</div>
 				</div>

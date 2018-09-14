@@ -36,6 +36,9 @@ public class ProductController
 	private SubCategory subCategory;
 	
 	@Autowired
+	private Laptop laptop;
+	
+	@Autowired
 	private LaptopService laptopService;
 	@Autowired
 	private SubCategoryService subCategoryService;
@@ -117,7 +120,6 @@ public class ProductController
 			
 			catch (IOException e) 
 			{
-			
 				e.printStackTrace();
 			}
 			return "vendorpage";
@@ -142,13 +144,12 @@ public class ProductController
 	
 	
 	@GetMapping("viewproductdetails/{product_id}")
-	public String viewProducts(@PathVariable("product_id") int product_id, Model model) {
-
-		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id))
-				.getSubc_name();
+	public String viewProducts(@PathVariable("product_id") int product_id, Model model)
+	{
+		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
 		System.out.println(name);
-		switch (name) {
-		
+		switch (name) 
+		{
 		case "laptop":
 			model.addAttribute("laptop",laptopService.getLaptopDetails(product_id));
 			return "laptopdetails";
@@ -157,7 +158,40 @@ public class ProductController
 			return "productdetails";
 		}
 	}
+	
+	
+	
+	@GetMapping("editproductdetails/{product_id}")
+	public String editProducts(@PathVariable("product_id")int product_id,Model model,HttpServletRequest hServletRequest)
+	{
+		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
+	
+		switch (name) 
+		{
+		case "laptop":
+			model.addAttribute("contextPath",hServletRequest.getContextPath());
+			model.addAttribute("laptop", laptopService.getLaptopDetails(product_id));
+			return "editlaptopdetails";
 
-}
-
-
+		default:
+			return "productdetails";
+		}
+		
+		
+			
+		}
+		
+		@PostMapping("editlaptopprocess")
+		public String editLaptopDetails(@ModelAttribute("laptop")Laptop laptop,HttpServletRequest request)
+		{
+			if(!laptop.getImage().isEmpty())
+			{
+				ImageUpload.uploadImage(laptop, request);
+			}
+			
+			laptopService.updateLaptop(laptop);
+			return "vendorpage";
+		}
+		
+		
+	}

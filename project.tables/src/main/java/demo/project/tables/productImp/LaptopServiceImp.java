@@ -48,8 +48,20 @@ public class LaptopServiceImp implements LaptopService
 			return null;
 		}
 	}
+
+	@Override
+	public boolean updateLaptop(Laptop laptop) {
+
+		try {
+			sessionFactory.getCurrentSession().update(laptop);
+			return true;
+		} 
+		catch (Exception e) {
+		
+		return false;
+	}
 	
-	
+	}
 	
 
 }

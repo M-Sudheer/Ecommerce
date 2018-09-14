@@ -23,7 +23,7 @@
 	
 </head>
 <body>
-
+	
 	<section class="container-fluid bg">
 		<section class="row justify-content-center">
 			<section class="col-12 col-sm-6 col-md-3">
@@ -37,7 +37,8 @@
 							type="hidden" value="${subc_id}"
 							placeholder="Enter  subcategory id" />
 					</div>
-			
+					
+		
 
 					<div class="form-group">
 						<spring:label path="price">Price</spring:label>

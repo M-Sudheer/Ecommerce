@@ -149,16 +149,12 @@ public class IndexController {
 		return "vendor";
 	}
 	
-	
-	
-/*	@GetMapping("profile")
+
+    /*@GetMapping("profile")
 	public String getVendor()
 	{
 		return "profile";
 	}*/
-	
-	
-	
 	
 	@GetMapping("accept/{v_id}")
 	public String acceptVendor(@PathVariable("v_id")int v_id)

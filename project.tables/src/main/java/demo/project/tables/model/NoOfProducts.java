@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class NoOfProducts
 {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int itemNo;

@@ -1,4 +1,6 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="spring" %>
 <html>
 <head>
 <title>Add laptop Page</title>
@@ -34,16 +36,10 @@
 							type="hidden" value="${subc_id}"
 							placeholder="Enter  subcategory id" />
 					</div>
-					<div class="form-group">
-						<spring:label path="vendor.v_id">Vendor Id</spring:label>
-						<spring:input class="form-control" path="vendor.v_id"
-							type="hidden" value="${v_id }"  />
-					</div>
-
-
+			
 
 					<div class="form-group">
-						<spring:label path="price">product _price</spring:label>
+						<spring:label path="price">Price</spring:label>
 						<spring:input  class="form-control" path="price"
 							placeholder="Enter  price" />
 					</div>
@@ -75,17 +71,17 @@
 							placeholder="Enter processor" />
 					</div>
 
+
 					<div class="form-group">
 						<spring:label path="noOfProducts">Number Of Products</spring:label>
 						<spring:input  class="form-control" path="noOfProducts"
 							placeholder="Enter no of products" />
 					</div>
-					<button type="submit" class="btn btn-primary btn-block">AddLaptop</button>
+					
+					<button type="submit" class="btn btn-primary btn-block btn-sm">AddLaptop</button>
 				</spring:form>
 			</section>
 		</section>
-	</section>
-	
+	</section>	
 </body>
-
 </html>

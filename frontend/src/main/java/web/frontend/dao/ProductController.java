@@ -35,11 +35,24 @@ public class ProductController {
 	public String getSubCategory(@RequestParam("category")int c_id, Model model) {
 		 
 		model.addAttribute("subCategoryList",subCategoryService.getSubCategoryList(c_id));
-		model.addAttribute("c_id",categoryService.getCategoryId(c_id));
 		return "subcategory";
-		
 	}
 	
+	
+	
+	
+	/*@PostMapping("getModel")
+	public String addLaptop(HttpServletRequest request,Model model)
+	{
+		switch(request.getParameter("subc_name"))
+		{
+		case "laptop": model.addAttribute("laptop",new Laptop());
+		return "laptop";
+		
+		default:return "subcategory";
+		}
+		
+	}*/
 	
 	@PostMapping("getModel")
 	public String  addProducts(HttpServletRequest request,Model model,HttpSession session) {
@@ -48,8 +61,7 @@ public class ProductController {
 		SubCategory subCategory=subCategoryService.getSubCategory(Integer.parseInt(request.getParameter("subc_id")));
 		model.addAttribute("subc_id",subCategory.getSubc_id());
 		
-		Vendor vendor=(Vendor)session.getAttribute("vendor");
-		model.addAttribute("v_id",vendor.getV_id());
+		
 		
 	  switch(subCategory.getSubc_name())
 		{
@@ -65,10 +77,17 @@ public class ProductController {
 	}
 	
 	@PostMapping("laptopprocess")
-	public String addLaptop(@ModelAttribute("laptop") Laptop laptop)
+	public String addLaptop(@ModelAttribute("laptop") Laptop laptop,HttpSession httpSession)
 	{
+		
+		
+		System.out.println(laptop);
+		
+	   SubCategory subCategory=subCategoryService.getSubCategory(laptop.getSubCategory().getSubc_id());
+	   Vendor vendor=(Vendor)httpSession.getAttribute("vendor");
+		laptop.setVendor(vendor);
+		laptop.setSubCategory(subCategory);
 		laptopService.addLaptop(laptop);
 		return "vendorpage";
 	}	
-	
 }

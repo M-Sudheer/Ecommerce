@@ -15,32 +15,40 @@ public class Laptop extends Products
 	private String rom;
 	private String brand;
 	private String processor;
+
 	public String getProcessor() {
 		return processor;
 	}
-	public void setProcessor(String processor) 
-	{
+
+	public void setProcessor(String processor) {
 		this.processor = processor;
 	}
 
 	public String getRam() {
 		return ram;
 	}
+
 	public void setRam(String ram) {
 		this.ram = ram;
 	}
+
 	public String getRom() {
 		return rom;
 	}
+
 	public void setRom(String rom) {
 		this.rom = rom;
 	}
+
 	public String getBrand() {
 		return brand;
 	}
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
+
 	
 	
+
 }

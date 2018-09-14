@@ -185,8 +185,4 @@ public class IndexController {
 		category.put("categoryList", categoryService.getCategoryDetails());
 		return "category";
 	}
-	
-
-	
-	
 }

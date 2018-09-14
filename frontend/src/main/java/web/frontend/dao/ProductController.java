@@ -1,5 +1,11 @@
 package web.frontend.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -77,7 +83,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("laptopprocess")
-	public String addLaptop(@ModelAttribute("laptop") Laptop laptop,HttpSession httpSession)
+	public String addLaptop(@ModelAttribute("laptop") Laptop laptop,HttpSession httpSession,HttpServletRequest httpServletRequest)
 	{
 		
 		
@@ -87,7 +93,48 @@ public class ProductController {
 	   Vendor vendor=(Vendor)httpSession.getAttribute("vendor");
 		laptop.setVendor(vendor);
 		laptop.setSubCategory(subCategory);
-		laptopService.addLaptop(laptop);
-		return "vendorpage";
+		
+		if(laptopService.addLaptop(laptop))
+		{
+			String contextPath=httpServletRequest.getRealPath("/");
+			File file=new File(contextPath+"/resources/images/products");
+			System.out.println(file.getPath());
+			if(!file.exists())
+			{
+				file.mkdir();
+			}
+			
+			FileOutputStream fileOutputStream;
+			
+			try
+			{
+				fileOutputStream=new FileOutputStream(file.getPath()+"/"+laptop.getProduct_id()+".jpg");
+				InputStream inputStream=laptop.getImage().getInputStream();
+				byte[] imageBytes=new byte[inputStream.available()];
+				inputStream.read(imageBytes);
+				fileOutputStream.write(imageBytes);
+				fileOutputStream.flush();
+			}
+			catch (FileNotFoundException e) 
+			{
+				e.printStackTrace();
+			}
+			
+			catch (IOException e) 
+			{
+			
+				e.printStackTrace();
+			}
+			return "vendorpage";
+		}
+		else
+		{
+
+		
+		return "getModel";
 	}	
+	
+	}
+	
+	
 }

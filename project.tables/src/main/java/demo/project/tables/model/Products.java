@@ -9,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -22,8 +24,10 @@ public class Products
 	private int product_id;
 	private int noOfProducts;
 	private int price;
+	@Transient
+	private MultipartFile image;
 
-
+	
 	
 	/*@ManyToOne(fetch = FetchType.LAZY)
     private Vendor */
@@ -75,4 +79,14 @@ public class Products
 	{
 		this.product_id = product_id;
 	}
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
+	
+	
+	
+	
 }

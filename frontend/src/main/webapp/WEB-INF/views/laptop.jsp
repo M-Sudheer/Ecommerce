@@ -28,7 +28,8 @@
 		<section class="row justify-content-center">
 			<section class="col-12 col-sm-6 col-md-3">
 				<spring:form class="form-container" action="laptopprocess"
-					method="post" modelAttribute="laptop">
+					method="post" modelAttribute="laptop" enctype="multipart/form-data">
+					
 					<h2>Add Laptop</h2>
 					<div class="form-group">
 						<spring:label path="subCategory.subc_id">SubCategory ID</spring:label>
@@ -78,6 +79,12 @@
 							placeholder="Enter no of products" />
 					</div>
 					
+					
+					<div class="form-group">
+						<spring:label path="image">Image</spring:label>
+						<spring:input  class="form-control" path="image"
+							type="file" />
+					</div>
 					<button type="submit" class="btn btn-primary btn-block btn-sm">AddLaptop</button>
 				</spring:form>
 			</section>

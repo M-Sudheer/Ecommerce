@@ -26,7 +26,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-
+		<h1><code>Have a Look at Our Gadgets...!!!</code></h1>
 	<div class="container">
 		<div class="row">
 			<c:forEach items="${productList}" var="product">
@@ -51,3 +51,14 @@
 	</div>
 </body>
 </html>
+
+
+<style>
+h1
+{
+text-align:center;
+padding-bottom:40px;
+text-style:italic;
+
+}
+</style>

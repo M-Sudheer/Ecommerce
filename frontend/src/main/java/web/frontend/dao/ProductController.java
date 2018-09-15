@@ -1,4 +1,3 @@
-
 package web.frontend.dao;
 
 import java.io.File;
@@ -32,6 +31,9 @@ import demo.project.tables.productsDao.LaptopService;
 public class ProductController 
 {
 
+	@Autowired
+	private ImageUpload imageUpload;
+	
 	@Autowired
 	private SubCategory subCategory;
 	
@@ -94,7 +96,7 @@ public class ProductController
 		
 		if(laptopService.addLaptop(laptop))
 		{
-			String contextPath=httpServletRequest.getRealPath("/");
+			/*String contextPath=httpServletRequest.getRealPath("/");
 			File file=new File(contextPath+"/resources/images/products");
 			System.out.println(file.getPath());
 			if(!file.exists())
@@ -121,7 +123,9 @@ public class ProductController
 			catch (IOException e) 
 			{
 				e.printStackTrace();
-			}
+			}*/
+			
+			imageUpload.uploadImage(laptop, httpServletRequest);
 			return "vendorpage";
 		}
 		else
@@ -162,22 +166,20 @@ public class ProductController
 	
 	
 	@GetMapping("editproductdetails/{product_id}")
-	public String editProducts(@PathVariable("product_id")int product_id,Model model,HttpServletRequest hServletRequest)
+	public String editProducts(@PathVariable("product_id")int product_id,Model model,HttpServletRequest httpServletRequest)
 	{
 		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
 	
 		switch (name) 
 		{
 		case "laptop":
-			model.addAttribute("contextPath",hServletRequest.getContextPath());
+			model.addAttribute("contextPath",httpServletRequest.getContextPath());
 			model.addAttribute("laptop", laptopService.getLaptopDetails(product_id));
 			return "editlaptopdetails";
 
 		default:
 			return "productdetails";
 		}
-		
-		
 			
 		}
 		
@@ -186,12 +188,11 @@ public class ProductController
 		{
 			if(!laptop.getImage().isEmpty())
 			{
-				ImageUpload.uploadImage(laptop, request);
+				imageUpload.uploadImage(laptop, request);
 			}
 			
 			laptopService.updateLaptop(laptop);
 			return "vendorpage";
 		}
-		
-		
+			
 	}

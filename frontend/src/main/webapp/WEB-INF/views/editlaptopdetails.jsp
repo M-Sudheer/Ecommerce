@@ -27,7 +27,7 @@
 	<section class="container-fluid bg">
 		<section class="row justify-content-center">
 			<section class="col-12 col-sm-6 col-md-3">
-				<spring:form class="form-container" action="${contextPath}/laptop"
+				<spring:form class="form-container" action="${contextPath}/editlaptopprocess"
 					method="post" modelAttribute="laptop" enctype="multipart/form-data">
 					
 					<h2>Edit Laptop</h2>
@@ -36,6 +36,15 @@
 						<spring:input class="form-control" path="subCategory.subc_id"
 							type="hidden" value="${subc_id}"
 							 />
+					</div>
+					
+					
+					<div class="form-group">
+						<spring:label path="vendor.v_id">Vendor Id</spring:label>
+						<spring:input class="form-control" path="vendor.v_id" type="hidden" value="${v_id}"/>
+					
+					
+					
 					</div>
 					
 					

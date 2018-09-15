@@ -39,7 +39,7 @@ public class IndexController {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@GetMapping(value= {"/index"})
+	@GetMapping(value= {"/"})
 	public ModelAndView indexPage()
 	{
 		ModelAndView modelAndView=new ModelAndView("index");
@@ -63,7 +63,7 @@ public class IndexController {
 	
 
 	
-	@GetMapping(value= {"/","/signup"})
+	@GetMapping(value= {"/signup"})
 	public String signup(Model model)
 	{
 		model.addAttribute("vendor", new Vendor());

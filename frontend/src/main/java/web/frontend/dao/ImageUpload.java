@@ -16,7 +16,7 @@ import demo.project.tables.model.Products;
 @Service
 public class ImageUpload {
 
-	public static void uploadImage(Products products,HttpServletRequest request) {
+	public  void uploadImage(Products products,HttpServletRequest request) {
 		
 		String contextPath = request.getRealPath("/");
 		File file = new File(contextPath + "/resources/images/products/");

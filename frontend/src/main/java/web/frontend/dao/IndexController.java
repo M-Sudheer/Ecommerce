@@ -1,5 +1,6 @@
 package web.frontend.dao;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,9 +26,8 @@ import demo.project.tables.model.Login;
 import demo.project.tables.model.Vendor;
 
 @Controller
-public class IndexController {
-	
-	
+public class IndexController
+{	
 	@Autowired
 	private Vendor vendor;
 	@Autowired
@@ -39,7 +39,7 @@ public class IndexController {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@GetMapping(value= {"/"})
+	@GetMapping(value= {"/","/index"})
 	public ModelAndView indexPage()
 	{
 		ModelAndView modelAndView=new ModelAndView("index");
@@ -60,6 +60,9 @@ public class IndexController {
 		modelAndView.addObject("date", new Date());
 		return modelAndView;
 	}
+	
+	
+	
 	
 
 	
@@ -91,38 +94,26 @@ public class IndexController {
 		}
 	}
 	@GetMapping("/login")
-	public String login(Model model)
-	{
-		model.addAttribute("login", new Login());
-		return "login";
-	}
-
-	@PostMapping("/login")
-	public String getCustomer(@ModelAttribute("login") Login login,Vendor vendor,HttpSession httpSession)
-		{
-		if((vendorService.login(login.getEmail(),login.getPassword())!=null))
-		{
-			vendor=vendorService.login(login.getEmail(),login.getPassword());
-			httpSession.setAttribute("vendor",vendor);
-			
-			return "vendorpage";
-
-		}
-		else
-		{
-			return "login";
-		}
-		}
-	
+    public String getUser()
+    {
+        return "login";
+    }
+    @GetMapping("/vendor/vendorpage")
+    public String vendor()
+    {
+        return "vendorpage";
+    }
 	
 
-	@GetMapping("/profile")
-	public String profile()
+	@GetMapping("/vendor/profile")
+	public ModelAndView profile(Principal principal) 
 	{
-	return "profile";
+		ModelAndView view=new ModelAndView("profile");
+		view.addObject("vendor",vendorService.getVendorByEmail(principal.getName()));
+		return view;
 	}
 	
-	@GetMapping(value= {"/edit"})
+	@GetMapping(value= {"/vendor/edit"})
 	public String editProfile(HttpSession httpSession,Model model)
 	{
 		model.addAttribute("vendor", httpSession.getAttribute("vendor"));
@@ -130,7 +121,7 @@ public class IndexController {
 	}
 	
 	
-	@PostMapping("/update")
+	@PostMapping("/vendor/update")
 	public String update(@ModelAttribute("vendor")Vendor vendor,HttpSession httpSession)
 	{
 		System.out.println(vendor);
@@ -175,10 +166,14 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping("category")
+	@GetMapping("/vendor/category")
 	public String getCategory(Map<String,Object> category)
 	{
 		category.put("categoryList", categoryService.getCategoryDetails());
 		return "category";
 	}
+	
 }
+
+
+	

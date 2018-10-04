@@ -67,8 +67,7 @@
 
 <div class="form-group form-check">
                         <label class="form-check-label"> <input
-                            class="form-check-input" type="checkbox">Remember me
-</label>
+                            class="form-check-input" type="checkbox">Remember me</label>
 </div>
 <button type="submit" class="btn btn-success btn-block">Sign Up</button>
 

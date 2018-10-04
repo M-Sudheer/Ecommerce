@@ -1,5 +1,8 @@
 package demo.project.tables.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CustomerLogin {
 
 	

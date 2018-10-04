@@ -16,7 +16,15 @@
 <title></title>
 </head>
 <body>
-    <div class="bg">
+
+	<form action="vendor/vendorloginprocess" method="post">
+   <input type="email" name="email"/>
+   <input type="password" name="password"/>
+   <input type="submit" value="VendorLogin"/>
+   </form>
+
+
+    <%-- <div class="bg">
 		<div class="container-fluid bg">
     		<div class="row">
  				<springform:form action="login" method="POST" modelAttribute="login" class="form-container">
@@ -47,7 +55,6 @@
  </body>
 </html>
 <style>
-
 img
 {
 width:70%;
@@ -55,19 +62,16 @@ padding-bottom:10px;
 padding-top:0px;
 padding-left:60px;
 }
-
 .row
 {
 padding-top:1px;
 }
-
  .bg {
         
            background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Dark-Pink-Wallpapers-HD-Free-Download-620x388.jpg");
          
            width: 100%;
            height: 100vh;
-
            background-position: center;
            background-repeat: no-repeat;
            background-size: cover;
@@ -79,3 +83,6 @@ padding-top:1px;
            padding-top: 150px;
        }
    
+  --%> 
+  </body>
+  </html>

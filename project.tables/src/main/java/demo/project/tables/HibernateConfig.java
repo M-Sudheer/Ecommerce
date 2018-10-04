@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("demo.project.tables")
 public class HibernateConfig 
 {
-	@Bean
+	@Bean("dataSource")
    public DataSource getDataSource()
 	{
 		BasicDataSource basicDataSource=new BasicDataSource();
@@ -49,8 +49,7 @@ public class HibernateConfig
 			properties.setProperty("hibernate.hbm2ddl.auto", "update");
 			properties.setProperty("hibernate.show_sql", "true");
 			
-			return properties;
-			
+			return properties;	
 	 }
 	 
 	 

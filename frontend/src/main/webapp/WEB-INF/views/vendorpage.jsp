@@ -5,6 +5,7 @@
 <head>
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
 <spring:url value="/resources/images" var="images"></spring:url>
  
@@ -21,7 +22,7 @@
 
 <h3>Welcome to Vendor Page...!!!</h3>
 
-
+<%@include file="navbar.jsp" %>
 <nav class="navbar navbar-expand-sm bg-danger">
   <ul class="navbar-nav"> 
     <li class="nav-item">

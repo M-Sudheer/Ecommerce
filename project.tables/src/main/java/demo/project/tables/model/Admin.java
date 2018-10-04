@@ -15,7 +15,26 @@ public class Admin
 	private String name;
 	private String password;
 	private String email;
+	private String role;
+	private boolean status=true;
 	
+	
+	
+	public String getRole() 
+	{
+		return role;
+	}
+	public void setRole(String role) 
+	{
+		this.role = role;
+	}
+	public boolean isStatus() 
+	{
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	public String getEmail() {
 		return email;
 	}

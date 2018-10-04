@@ -39,14 +39,27 @@
     </li>
     
     <li class="nav-item">
-    	<a class="nav-link" href="login.html">Login</a>
+    	<a class="nav-link" href="login">Login</a>
     </li>
     
     
     <li class="nav-item">
-    	<a class="nav-link" href="signup.html">Sign Up</a>
+    	<a class="nav-link" href="signup">Sign Up</a>
     </li>
     
+    
+    <li class="nav-item">
+    	<a class="nav-link" href="customerlogin">Customer Login</a>
+    </li>
+    
+    
+    <li class="nav-item">
+    	<a class="nav-link" href="customersignup">Customer Signup</a>
+    </li>
+    
+    <li class="nav-item">
+    	<a class="nav-link" href="adminlogin">Admin</a>
+    	</li>
     
   </ul>
 </nav>
@@ -63,13 +76,13 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="${images}/lappy.png" alt="Los Angeles">
+      <img src="${images}/lappy.png" alt="lappy">
     </div>
     <div class="carousel-item">
-      <img src="${images}/laptop.jpg" alt="Chicago">
+      <img src="${images}/laptop.jpg" alt="laptop">
     </div>
     <div class="carousel-item">
-      <img src="${images}/phone.jpg" alt="New York">
+      <img src="${images}/phone.jpg" alt="phone">
     </div>
   </div>
 
@@ -82,6 +95,9 @@
   </a>
 
 </div>
+<br>
+
+  <%@include file="footer.jsp" %>
 </body>
 </html>
 <style>

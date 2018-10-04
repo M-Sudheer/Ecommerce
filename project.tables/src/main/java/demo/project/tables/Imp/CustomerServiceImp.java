@@ -3,6 +3,7 @@ package demo.project.tables.Imp;
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -67,4 +68,33 @@ public class CustomerServiceImp  implements CustomerService
 	}
 	}
 
+	@Override
+	public Customer getCustomerByEmail(String email) 
+	{
+	try {
+		Query<Customer> query=sessionFactory.getCurrentSession().createQuery("from Customer where email=:email", Customer.class);
+		query.setParameter("email", email);
+		return query.getSingleResult();
+	} catch (Exception e) {
+		// TODO: handle exception
+		return null;
+	}	
+		
+	}
+
+	@Override
+	public Customer customerLogin(String email, String password) {
+		try
+		{
+			Query<Customer> query=sessionFactory.getCurrentSession().createQuery("from Customer where email=:email and password=:password", Customer.class)
+			.setParameter("email", email).setParameter("password",password);
+			return query.getSingleResult();
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		return null;
+	}
+
+}
 }

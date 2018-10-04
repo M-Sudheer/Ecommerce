@@ -37,7 +37,8 @@ public class Vendor
 	@Column(unique=true)
 	private String password;
 	
-	private boolean status=false;
+	private String role="vendor";
+	private boolean status=true;
 	
 
 	public boolean isStatus() {

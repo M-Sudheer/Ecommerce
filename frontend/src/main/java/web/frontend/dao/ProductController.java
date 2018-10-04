@@ -25,7 +25,9 @@ import demo.project.tables.dao.SubCategoryService;
 import demo.project.tables.model.SubCategory;
 import demo.project.tables.model.Vendor;
 import demo.project.tables.products.Laptop;
+import demo.project.tables.products.Mobile;
 import demo.project.tables.productsDao.LaptopService;
+import demo.project.tables.productsDao.MobileService;
 
 @Controller
 public class ProductController 
@@ -37,11 +39,19 @@ public class ProductController
 	@Autowired
 	private SubCategory subCategory;
 	
+	
+	@Autowired
+	private Mobile mobile;
+	
+	@Autowired
+	private MobileService mobileService;
+	
 	@Autowired
 	private Laptop laptop;
 	
 	@Autowired
 	private LaptopService laptopService;
+	
 	@Autowired
 	private SubCategoryService subCategoryService;
 	
@@ -51,7 +61,7 @@ public class ProductController
 	@Autowired
 	private ProductService productService;
 	
-	@PostMapping("subcategory")
+	@PostMapping("/vendor/subcategory")
 	public String getSubCategory(@RequestParam("category")int c_id, Model model) {
 		 
 		model.addAttribute("subCategoryList",subCategoryService.getSubCategoryList(c_id));
@@ -60,14 +70,12 @@ public class ProductController
 	
 	
 
-	@PostMapping("getModel")
+	@PostMapping("/vendor/getModel")
 	public String  addProducts(HttpServletRequest request,Model model,HttpSession session) {
 		
 	   
 		SubCategory subCategory=subCategoryService.getSubCategory(Integer.parseInt(request.getParameter("subc_id")));
 		model.addAttribute("subc_id",subCategory.getSubc_id());
-		
-		
 		
 	  switch(subCategory.getSubc_name())
 		{
@@ -77,12 +85,18 @@ public class ProductController
 		  					      
 		  return "laptop";
 		  
+		  case "Mobiles": 
+				
+			  model.addAttribute("mobile" ,new Mobile());
+			  					      
+			  return "mobile";
+		  
 		 
 		default: return "subcategory";
 		}
 	}
 	
-	@PostMapping("laptopprocess")
+	@PostMapping("/vendor/laptopprocess")
 	public String addLaptop(@ModelAttribute("laptop") Laptop laptop,HttpSession httpSession,HttpServletRequest httpServletRequest)
 	{
 		
@@ -137,7 +151,36 @@ public class ProductController
 	
 	}
 	
-	@GetMapping("productdetails")
+	
+	@PostMapping("/vendor/mobileprocess")
+	public String addMobile(@ModelAttribute("mobile") Mobile mobile,HttpSession httpSession,HttpServletRequest httpServletRequest)
+	{
+		
+		
+		System.out.println(mobile);
+		
+	   SubCategory subCategory=subCategoryService.getSubCategory(laptop.getSubCategory().getSubc_id());
+	   Vendor vendor=(Vendor)httpSession.getAttribute("vendor");
+		mobile.setVendor(vendor);
+		mobile.setSubCategory(subCategory);
+		
+		if(mobileService.addMobile(mobile))
+		{
+			
+			imageUpload.uploadImage(mobile, httpServletRequest);
+			return "vendorpage";
+		}
+		else
+		{
+
+		
+		return "getModel";
+	}	
+	
+	}
+	
+	
+	@GetMapping("/vendor/productdetails")
 	public String getProducts(HttpSession session,Model model,Map<String,Object> products)
 	{
 		Vendor vendor=(Vendor)session.getAttribute("vendor");
@@ -147,7 +190,7 @@ public class ProductController
 	}
 	
 	
-	@GetMapping("viewproductdetails/{product_id}")
+	@GetMapping("/vendor/viewproductdetails/{product_id}")
 	public String viewProducts(@PathVariable("product_id") int product_id, Model model)
 	{
 		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
@@ -158,6 +201,10 @@ public class ProductController
 			model.addAttribute("laptop",laptopService.getLaptopDetails(product_id));
 			return "laptopdetails";
 
+		case "Mobiles":
+			model.addAttribute("mobile",mobileService.getMobileDetails(product_id));
+			return "mobiledetails";
+
 		default:
 			return "productdetails";
 		}
@@ -165,7 +212,7 @@ public class ProductController
 	
 	
 	
-	@GetMapping("editproductdetails/{product_id}")
+	@GetMapping("/vendor/editproductdetails/{product_id}")
 	public String editProducts(@PathVariable("product_id")int product_id,Model model,HttpServletRequest httpServletRequest)
 	{
 		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
@@ -176,6 +223,14 @@ public class ProductController
 			model.addAttribute("contextPath",httpServletRequest.getContextPath());
 			model.addAttribute("laptop", laptopService.getLaptopDetails(product_id));
 			return "editlaptopdetails";
+			
+		case "Mobiles":
+			model.addAttribute("contextPath",httpServletRequest.getContextPath());
+			model.addAttribute("mobile",mobileService.getMobileDetails(product_id));
+			return "editmobiledetails";
+			
+			
+			
 
 		default:
 			return "productdetails";
@@ -183,7 +238,7 @@ public class ProductController
 			
 		}
 		
-		@PostMapping("editlaptopprocess")
+		@PostMapping("/vendor/editlaptopprocess")
 		public String editLaptopDetails(@ModelAttribute("laptop")Laptop laptop,HttpServletRequest request)
 		{
 			if(!laptop.getImage().isEmpty())
@@ -194,5 +249,21 @@ public class ProductController
 			laptopService.updateLaptop(laptop);
 			return "vendorpage";
 		}
+		
+		
+
+		@PostMapping("/vendor/editmobileprocess")
+		public String editMobileDetails(@ModelAttribute("mobile")Mobile mobile,HttpServletRequest request)
+		{
+			if(!mobile.getImage().isEmpty())
+			{
+				imageUpload.uploadImage(mobile, request);
+			}
+			
+			mobileService.updateMobile(mobile);
+			return "vendorpage";
+		}
+		
+		
 			
 	}

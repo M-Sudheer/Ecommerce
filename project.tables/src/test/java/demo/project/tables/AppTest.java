@@ -22,6 +22,9 @@ import demo.project.tables.dao.SubCategoryService;
 import demo.project.tables.dao.VendorService;
 import demo.project.tables.model.Address;
 import demo.project.tables.model.Admin;
+import demo.project.tables.model.Cart;
+import demo.project.tables.model.CartItem;
+import demo.project.tables.model.CartItemId;
 import demo.project.tables.model.Category;
 import demo.project.tables.model.Customer;
 import demo.project.tables.model.SubCategory;
@@ -40,11 +43,18 @@ public class AppTest
 	private SubCategory subCategory;
 	@Autowired
 	private Laptop laptop;
-	/*@Autowired
-	private Customer customer;*/
-	/*@Autowired
+	
+	@Autowired
+	private Cart cart;
+	@Autowired
+	private CartItemId cartItemId;
+	@Autowired
+	private CartItem cartItem;
+	@Autowired
+	private Customer customer;
+	@Autowired
 	private Admin admin;
-*/
+
 	
 	
 	@Autowired
@@ -71,11 +81,11 @@ public class AppTest
 	{
 		AnnotationConfigApplicationContext annotationConfigApplicationContext=new  AnnotationConfigApplicationContext(HibernateConfig.class);
 		
-		vendor.setName("sai");
-		vendor.setEmail("sai@gmail.com");
-		vendor.setMobile("978989095");
-		vendor.setPassword("sai");
-		vendor.setCompanyName("Flipkart");
+		vendor.setName("sahil");
+		vendor.setEmail("sahil@gmail.com");
+		vendor.setMobile("978989094");
+		vendor.setPassword("sahil");
+		vendor.setCompanyName("Amazon");
 		vendor.getV_id();
 
 

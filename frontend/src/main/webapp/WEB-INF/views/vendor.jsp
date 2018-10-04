@@ -26,9 +26,9 @@
 				<th>name</th>
 				<th>email</th>
 				<th>mobile</th>
-				<!-- <th>role</th> -->
+				<th>role</th>
 				<th>status</th>
-				<th>operation</th>
+				
 			</tr>
 		</thead>
 		
@@ -40,7 +40,7 @@
 		<td><c:out value="${vendor.name}"></c:out></td>
 		<td><c:out value="${vendor.email}"></c:out></td>
 		<td><c:out value="${vendor.mobile}"></c:out></td>
-		<%-- <td><c:out value="${vendor.role}"></c:out></td> --%>
+		<td><c:out value="${vendor.role}"></c:out></td>
 		<td><c:out value="${vendor.status}"></c:out></td>
 		
 		

@@ -32,14 +32,13 @@
     <li class="nav-item">
     	<a class="nav-link" href="${contextPath}/customer/editcustomer">Edit Profile</a>
     </li>
-  <%--   <%@include file="navbar.jsp" %> --%>
+    <%@include file="navbar.jsp" %>
  <li>
  
  </li>
     
   </ul>
 </nav>
-<img alt="Pik" src="newpik.jpg">
 </body>
 </html>
 

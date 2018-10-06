@@ -14,6 +14,8 @@ public interface ProductService
 		
 		public int getSubc_id(int product_id);
 		public List<Products> getProducts(int subc_id);
+		
+		public Products getProduct(int product_id);
 	
 
 }

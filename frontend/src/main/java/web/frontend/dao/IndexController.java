@@ -173,14 +173,14 @@ public class IndexController
 		vendorService.updateVendor(vendor);
 		return "index";
 	}
-	
+	*/
 	@GetMapping("/vendor/category")
 	public String getCategory(Map<String,Object> category)
 	{
 		category.put("categoryList", categoryService.getCategoryDetails());
 		return "category";
 	}
-	*/
+	
 }
 
 

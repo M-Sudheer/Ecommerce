@@ -38,7 +38,7 @@
 
 <tr>
 <td>id</td>
-<td><springform:input path="v_id" value="${vendor.v_id}"type="hidden"/></td>
+<td><springform:input path="v_id" value="${vendor.v_id}" type="hidden"/></td>
 </tr>
 
 <tr>

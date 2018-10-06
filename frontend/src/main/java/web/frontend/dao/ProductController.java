@@ -268,7 +268,7 @@ public class ProductController
 			
 		}
 		
-		@PostMapping("/vendor/editlaptopprocess")
+		@PostMapping("editlaptopprocess")
 		public String editLaptopDetails(@ModelAttribute("laptop")Laptop laptop,HttpServletRequest request)
 		{
 			if(!laptop.getImage().isEmpty())
@@ -282,7 +282,7 @@ public class ProductController
 		
 		
 
-		@PostMapping("/vendor/editmobileprocess")
+		@PostMapping("editmobileprocess")
 		public String editMobileDetails(@ModelAttribute("mobile")Mobile mobile,HttpServletRequest request)
 		{
 			if(!mobile.getImage().isEmpty())
@@ -301,4 +301,29 @@ public class ProductController
 		products.put("productList", productService.getProducts(subc_id));
 		return "productbar";
 	}
+	
+	
+	
+	@GetMapping("/buyproducts/{product_id}")
+	public String buyProducts(@PathVariable("product_id") int product_id, Model model)
+	{
+		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
+		System.out.println(name);
+		switch (name) 
+		{
+		case "laptop":
+			model.addAttribute("laptop",laptopService.getLaptopDetails(product_id));
+			return "buylaptop";
+
+		case "Mobiles":
+			model.addAttribute("mobile",mobileService.getMobileDetails(product_id));
+			return "buymobile";
+
+		default:
+			return "vendorpage";
+		}
+	}
+
+	
+	
 	}

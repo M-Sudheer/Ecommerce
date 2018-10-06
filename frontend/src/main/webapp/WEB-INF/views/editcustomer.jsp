@@ -33,11 +33,12 @@
 </head>
 
 <body>
+
 <springform:form action="updatecustomer" method="post" modelAttribute="customer">
 <table>
 
 <tr>
-<td>id</td>
+<td>Id</td>
 <td><springform:input path="id" type="hidden" value="${customerDetails.id}"/></td>
 </tr>
 

@@ -1,7 +1,4 @@
 package web.frontend.dao;
-
-
-
 import java.security.Principal;
 import java.util.Map;
 
@@ -21,6 +18,7 @@ import demo.project.tables.dao.VendorService;
 import demo.project.tables.model.Admin;
 import demo.project.tables.model.AdminLogin;
 import demo.project.tables.model.Vendor;
+
 
 @Controller
 public class AdminController 
@@ -65,19 +63,19 @@ public ModelAndView getAdminProfile(Principal principal)
     return view;
 }
 
-@GetMapping("admin/accept/{id}")
-public String acceptUser(@PathVariable("id") int id) {
-
-    Vendor vendor = vendorService.getVendor(id);
+@GetMapping("admin/accept/{v_id}")
+public String acceptUser(@PathVariable("v_id") int v_id) 
+{
+    Vendor vendor = vendorService.getVendor(v_id);
     vendor.setStatus(true);
     vendorService.updateVendor(vendor);
-    return "redirect:/admin/vendordetails";
+    return "redirect:/admin/vendor";
 
 }
-@GetMapping("admin/reject/{id}")
-public String rejectUser(@PathVariable("id") int id) 
+@GetMapping("admin/reject/{v_id}")
+public String rejectUser(@PathVariable("v_id") int v_id) 
 {
-    Vendor vendor = vendorService.getVendor(id);
+    Vendor vendor = vendorService.getVendor(v_id);
     vendor.setStatus(false);
     vendorService.updateVendor(vendor);
     return "redirect:/admin/vendor";

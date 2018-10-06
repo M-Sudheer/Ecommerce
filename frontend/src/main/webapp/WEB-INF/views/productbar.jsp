@@ -40,6 +40,8 @@
 						<div class="caption">
 							<a href="${contextPath}/productspecifications/${product.product_id}"><button
 									class="btn btn-success">view</button></a>
+									<a href="${contextPath}/buyproducts/${product.product_id}"><button
+									class="btn btn-primary">Buy</button></a>
 							 
 						</div>
 					</div>

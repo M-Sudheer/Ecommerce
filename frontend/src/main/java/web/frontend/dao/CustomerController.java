@@ -103,12 +103,12 @@ public String editcustomer(HttpSession httpSession,Model model)
     return "editcustomer";
 }
 
-@PostMapping("/updatecustomer")
+@PostMapping("customer/updatecustomer")
 public String updatecustomer(@ModelAttribute("customer") Customer customer,HttpSession httpSession)
 {
     httpSession.setAttribute("customerDetails", customer);
     customerService.updateCustomer(customer);
-    return "customer/customerprofile";
+    return "customer/customerpage";
 }
 
 /*@GetMapping("customerlaptop")

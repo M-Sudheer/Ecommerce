@@ -51,4 +51,25 @@ public class SubCategoryServiceImp implements SubCategoryService{
 		}
 	}
 
+	@Override
+	public List<SubCategory> getAllSubCategoryList() {
+		try {
+            return sessionFactory.getCurrentSession().createCriteria(SubCategory.class).list();
+        } catch (Exception e) {
+            return null;
+        }
+	}
+
+	@Override
+	public List<SubCategory> getElectronics() {
+		try {
+            Query<SubCategory> query = sessionFactory.getCurrentSession()
+                    .createQuery("from SubCategory where category_c_id=1", SubCategory.class);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+	}
+
 }

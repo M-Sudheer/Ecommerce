@@ -4,7 +4,8 @@
 <html>
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="contextpaths.jsp" %>
 <spring:url value="/resources/images" var="images"></spring:url>
  
 
@@ -20,20 +21,13 @@
 
 <h1>Electronic Store</h1>
 <p><code>Your Store. Your Place</code></p>
-
 <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#">Home</a>
     </li>
-   <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Products </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Laptop">Laptop</a>
-              <a class="dropdown-item" href="Mobiles">Mobiles</a>
-              <a class="dropdown-item" href="Refrigerator">Refrigerator</a>
-            </div>
-  </div>
+   <%@include file="navbar.jsp" %>
+  
     <li class="nav-item">
       <a class="nav-link" href="#">About Us</a>
     </li>
@@ -100,6 +94,7 @@
   <%@include file="footer.jsp" %>
 </body>
 </html>
+
 <style>
 h1,p,code
 {

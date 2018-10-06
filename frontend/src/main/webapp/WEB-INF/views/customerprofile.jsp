@@ -22,19 +22,19 @@
 <table>
 <tr>
 <td>UserName:</td>
-<td>${customer.name}</td>
+<td>${customerDetails.name}</td>
 </tr>
 <tr>
 <td>Email:</td>
-<td>${customer.email}</td>
+<td>${customerDetails.email}</td>
 </tr>
 <tr>
 <td>Mobile Number:</td>
-<td>${customer.mobile}</td>
+<td>${customerDetails.mobile}</td>
 </tr>
 <tr>
 <td>Password:</td>
-<td>${customer.password}</td>
+<td>${customerDetails.password}</td>
 </tr>
 </table>
 <button><a href="editcustomer">Edit</a></button>

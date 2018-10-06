@@ -1,31 +1,22 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
-<%@page isELIgnored="false" %>
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark ">
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#collapsibleNavbar">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+            <li class="nav-item dropdown"><a
+               class="nav-link dropdown-toggle  text-primary" href="#"
+               id="navbardrop" data-toggle="dropdown"> Electronics </a>
+               <div class="dropdown-menu">
+                   <c:forEach items="${electronics}" var="electronic">
+                       <a class="dropdown-item"
+                           href="${contextPath}/products/${electronic.subc_id}">${electronic.subc_name}</a>
+                   </c:forEach>
+               </div></li>
 
-	<div class="collapse navbar-collapse " id="collapsibleNavbar">
-		<ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
-            
-			<!-- Dropdown -->
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle  text-white" href="#" id="navbardrop"
-				data-toggle="dropdown">Electronics</a>
-				
-				<div class="dropdown-menu">
-              <a class="dropdown-item" href="customerlaptop">Laptop</a>
-              <a class="dropdown-item" href="Mobiles">Mobiles</a>
-              <a class="dropdown-item" href="Refrigerator">Refrigerator</a>
-            </div>
-				<c:forEach  items="${Electronics}" var="electronic">
-					<a class="dropdown-item" href="product/${Electronics.subc_id}">${Electronics.subcname}</a> 
-		        </c:forEach>
-				</div>
-				</li>
-</ul>
-	</div>
-</nav>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package web.frontend.dao;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,7 @@ public String customerlogin(Model model)
 	return "customerlogin";
 }
 
-@PostMapping("customerloginprocess")
+/*@PostMapping("customerloginprocess")
 public String customerlogin(@ModelAttribute("customerlogin") CustomerLogin customerLogin,HttpSession httpSession)
 {
 	if(customerService.customerLogin(customerLogin.getEmail(), customerLogin.getPassword())!=null)
@@ -75,43 +77,45 @@ public String customerlogin(@ModelAttribute("customerlogin") CustomerLogin custo
 	}
 }
 
-
+*/
 
 @GetMapping("customer/customerpage")
-public ModelAndView CustomerIndex() {
+public ModelAndView CustomerIndex(Principal principal,HttpSession httpSession) {
 	ModelAndView modelAndView = new ModelAndView("customerpage");
+	Customer customer=customerService.getCustomerByEmail(principal.getName());
+	httpSession.setAttribute("customerDetails", customer);
 	return modelAndView;
 }
 
 
 
 
-@GetMapping("customerprofile")
+@GetMapping("customer/customerprofile")
 public String customerprofile()
 {
     return "customerprofile";
 }
 
-@GetMapping("editcustomer")
+@GetMapping("customer/editcustomer")
 public String editcustomer(HttpSession httpSession,Model model)
 {
-    model.addAttribute("customer", httpSession.getAttribute("customer"));
+    model.addAttribute("customer", httpSession.getAttribute("customerDetails"));
     return "editcustomer";
 }
 
 @PostMapping("/updatecustomer")
 public String updatecustomer(@ModelAttribute("customer") Customer customer,HttpSession httpSession)
 {
-    httpSession.setAttribute("customer", customer);
+    httpSession.setAttribute("customerDetails", customer);
     customerService.updateCustomer(customer);
-    return "customerprofile";
+    return "customer/customerprofile";
 }
 
-@GetMapping("customerlaptop")
+/*@GetMapping("customerlaptop")
 public String laptop(HttpSession httpSession,Model model)
 {
 	model.addAttribute("laptop",httpSession.getAttribute("laptop"));
 	return "customerlaptop";
 }
-
+*/
 }

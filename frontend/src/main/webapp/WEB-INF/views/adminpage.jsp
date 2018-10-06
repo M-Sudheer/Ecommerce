@@ -25,17 +25,13 @@
 <nav class="navbar navbar-expand-sm bg-danger">
   <ul class="navbar-nav"> 
     <li class="nav-item">
-    	<a class="nav-link" href="adminprofile">Profile</a>
+    	<a class="nav-link" href="${contextPath}/admin/adminprofile">Profile</a>
     </li>
     
     
+        
     <li class="nav-item">
-    	<a class="nav-link" href="editadmin">Edit Profile</a>
-    </li>
-    
-    
-    <li class="nav-item">
-    	<a class="nav-link" href="admindetails">Admin Details</a>
+    	<a class="nav-link" href="${contextPath}/admin/vendor">Vendor Details</a>
     </li>
  <li>
  

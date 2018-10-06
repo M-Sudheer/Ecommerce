@@ -17,30 +17,32 @@
 </head>
 <body>
 
-	<form action="vendor/vendorloginprocess" method="post">
-   <input type="email" name="email"/>
-   <input type="password" name="password"/>
-   <input type="submit" value="VendorLogin"/>
-   </form>
+	
+   
+   
+   
+  
 
 
-    <%-- <div class="bg">
+    <div class="bg">
 		<div class="container-fluid bg">
     		<div class="row">
- 				<springform:form action="login" method="POST" modelAttribute="login" class="form-container">
+    		<form action="vendor/vendorloginprocess" method="post" class="form-container">
+ 		
 					<img src="${images}/icon.png"> 					
  						<div class="form-group">
  						
  						<i class="fas fa-envelope-open"></i>
  						<label for="email">Email Id:</label>
-   				<springform:input path="email" class="form-control" id="email"/>
+ 						<input type="email" name="email"/>
+   				
  			</div>
  			
  			<div class="form-group">
  				<i class="fas fa-unlock"></i>
    					<label for="pwd" >Password:</label>	
-   					<springform:input type="password" path="password" class="form-control" id="pwd" />
-   					<!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+   					<input type="password" name="password"/>
+   					
  			</div>
  			
  			
@@ -49,8 +51,8 @@
      			<input class="form-check-input" type="checkbox">
      			<label class="form-check-label">Remember me</label>
  			</div>
- 		<button type="submit" class="btn btn-success btn-block">login</button>
-	</springform:form>	
+ 		<input type="submit" value="VendorLogin"/>
+	</form>	
    </div> 
  </body>
 </html>
@@ -83,6 +85,4 @@ padding-top:1px;
            padding-top: 150px;
        }
    
-  --%> 
-  </body>
-  </html>
+ 

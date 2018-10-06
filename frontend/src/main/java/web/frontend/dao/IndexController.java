@@ -20,14 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import demo.project.tables.dao.CategoryService;
+import demo.project.tables.dao.SubCategoryService;
 import demo.project.tables.dao.VendorService;
 import demo.project.tables.model.Category;
 import demo.project.tables.model.Login;
+import demo.project.tables.model.SubCategory;
 import demo.project.tables.model.Vendor;
 
 @Controller
 public class IndexController
 {	
+	@Autowired
+	private SubCategory subCategory;
+	@Autowired
+	private SubCategoryService subCategoryService;
 	@Autowired
 	private Vendor vendor;
 	@Autowired
@@ -40,9 +46,10 @@ public class IndexController
 	private SessionFactory sessionFactory;
 	
 	@GetMapping(value= {"/","/index"})
-	public ModelAndView indexPage()
+	public ModelAndView indexPage(HttpSession httpSession)
 	{
 		ModelAndView modelAndView=new ModelAndView("index");
+		httpSession.setAttribute("electronics", subCategoryService.getElectronics());
 	    return modelAndView;
 	}
 	
@@ -106,10 +113,11 @@ public class IndexController
 	
 
 	@GetMapping("/vendor/profile")
-	public ModelAndView profile(Principal principal) 
+	public ModelAndView profile(Principal principal,HttpSession httpSession) 
 	{
 		ModelAndView view=new ModelAndView("profile");
-		view.addObject("vendor",vendorService.getVendorByEmail(principal.getName()));
+		Vendor vendor=vendorService.getVendorByEmail(principal.getName());
+        httpSession.setAttribute("vendor", vendor);
 		return view;
 	}
 	
@@ -133,7 +141,7 @@ public class IndexController
 	
 	
 	
-	@GetMapping("vendor")
+	/*@GetMapping("vendor")
 	public String getVendor(Map<String,Object> vendor)
 	{
 		vendor.put("vendorList", vendorService.getVendorDetails());
@@ -141,11 +149,11 @@ public class IndexController
 	}
 	
 
-    /*@GetMapping("profile")
+    @GetMapping("profile")
 	public String getVendor()
 	{
 		return "profile";
-	}*/
+	}
 	
 	@GetMapping("accept/{v_id}")
 	public String acceptVendor(@PathVariable("v_id")int v_id)
@@ -172,7 +180,7 @@ public class IndexController
 		category.put("categoryList", categoryService.getCategoryDetails());
 		return "category";
 	}
-	
+	*/
 }
 
 

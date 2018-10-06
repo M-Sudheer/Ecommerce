@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import demo.project.tables.dao.CategoryService;
 import demo.project.tables.dao.ProductService;
 import demo.project.tables.dao.SubCategoryService;
+import demo.project.tables.dao.VendorService;
+import demo.project.tables.model.NoOfProducts;
+import demo.project.tables.model.Products;
 import demo.project.tables.model.SubCategory;
 import demo.project.tables.model.Vendor;
 import demo.project.tables.products.Laptop;
@@ -33,6 +39,12 @@ import demo.project.tables.productsDao.MobileService;
 public class ProductController 
 {
 
+	
+	@Autowired
+	private Vendor vendor;
+	@Autowired
+	private VendorService vendorService;
+	
 	@Autowired
 	private ImageUpload imageUpload;
 	
@@ -110,7 +122,7 @@ public class ProductController
 		
 		if(laptopService.addLaptop(laptop))
 		{
-			/*String contextPath=httpServletRequest.getRealPath("/");
+			String contextPath=httpServletRequest.getRealPath("/");
 			File file=new File(contextPath+"/resources/images/products");
 			System.out.println(file.getPath());
 			if(!file.exists())
@@ -137,7 +149,7 @@ public class ProductController
 			catch (IOException e) 
 			{
 				e.printStackTrace();
-			}*/
+			}
 			
 			imageUpload.uploadImage(laptop, httpServletRequest);
 			return "vendorpage";
@@ -172,8 +184,6 @@ public class ProductController
 		}
 		else
 		{
-
-		
 		return "getModel";
 	}	
 	
@@ -181,9 +191,11 @@ public class ProductController
 	
 	
 	@GetMapping("/vendor/productdetails")
-	public String getProducts(HttpSession session,Model model,Map<String,Object> products)
+	public String getProducts(HttpSession session,Model model,Map<String,Object> products,Principal principal)
 	{
-		Vendor vendor=(Vendor)session.getAttribute("vendor");
+	/*	Vendor vendor=(Vendor)session.getAttribute("vendorDetails");*/
+		Vendor vendor=vendorService.getVendorByEmail(principal.getName());
+		System.out.println(productService.getAllProducts(vendor.getV_id()));
 		products.put("productList",productService.getAllProducts(vendor.getV_id()));
 		
 		return "productdetails";
@@ -206,12 +218,30 @@ public class ProductController
 			return "mobiledetails";
 
 		default:
-			return "productdetails";
+			return "vendordetails";
 		}
 	}
 	
 	
-	
+	@GetMapping("/productspecifications/{product_id}")
+	public String viewproductspecifications(@PathVariable("product_id") int product_id, Model model)
+	{
+		String name = subCategoryService.getSubCategory(productService.getSubc_id(product_id)).getSubc_name();
+		System.out.println(name);
+		switch (name) 
+		{
+		case "laptop":
+			model.addAttribute("laptop",laptopService.getLaptopDetails(product_id));
+			return "viewlaptop";
+
+		case "Mobiles":
+			model.addAttribute("mobile",mobileService.getMobileDetails(product_id));
+			return "viewmobile";
+
+		default:
+			return "vendorpage";
+		}
+	}
 	@GetMapping("/vendor/editproductdetails/{product_id}")
 	public String editProducts(@PathVariable("product_id")int product_id,Model model,HttpServletRequest httpServletRequest)
 	{
@@ -264,6 +294,11 @@ public class ProductController
 			return "vendorpage";
 		}
 		
-		
-			
+	@GetMapping("products/{subc_id}")
+	public String getProducts(@PathVariable("subc_id") int subc_id,Map<String,Object> products,HttpSession httpSession)
+	{
+		httpSession.setAttribute("electronics", subCategoryService.getElectronics());
+		products.put("productList", productService.getProducts(subc_id));
+		return "productbar";
+	}
 	}

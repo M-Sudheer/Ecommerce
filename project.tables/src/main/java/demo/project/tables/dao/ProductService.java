@@ -13,6 +13,7 @@ public interface ProductService
 		public List<Products> getAllProducts(int v_id);
 		
 		public int getSubc_id(int product_id);
+		public List<Products> getProducts(int subc_id);
 	
 
 }

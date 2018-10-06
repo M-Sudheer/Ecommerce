@@ -33,16 +33,13 @@
 			<c:forEach items="${productList}" var="product">
 				<div class="col-md-3">
 					<div class="thumbnail">
-						<a href="#"> <img
-							src="<spring:url  value="/resources/images/products/${product.product_id}.jpg"></spring:url>"
+						<a href="#"> 
+						<img src="<spring:url  value="/resources/images/products/${product.product_id}.jpg"></spring:url>"
 							alt="${product.price }" style="width: 100%">
 						</a>
 						<div class="caption">
-							<a href="${contextPath}/vendor/viewproductdetails/${product.product_id}"><button
+							<a href="${contextPath}/productspecifications/${product.product_id}"><button
 									class="btn btn-success">view</button></a>
-							 <!-- <input type="button" class="btn btn-primary" value="edit"> -->
-							 <a href="${contextPath}/vendor/editproductdetails/${product.product_id}"><button
-									class="btn btn-success">Edit</button></a>
 							 
 						</div>
 					</div>

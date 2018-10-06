@@ -8,4 +8,6 @@ public interface SubCategoryService
 {
 	public abstract SubCategory getSubCategory(int subc_id);
 	public List<SubCategory> getSubCategoryList(int c_id);
+	public List<SubCategory> getAllSubCategoryList();
+	public List<SubCategory> getElectronics();
 }

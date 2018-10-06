@@ -21,9 +21,9 @@
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">About Us</h6>
           <p>
-            <a href="#!">About us</a>
+         	<cite>Electronic Store is the best platform where you can buy any electronic products!!!</cite>
           </p>
-          <p>
+         <!--  <p>
             <a href="#!">Services</a>
           </p>
           <p>
@@ -31,7 +31,7 @@
           </p>
           <p>
             <a href="#!">Cantact us</a>
-          </p>
+          </p> -->
         </div>
         <!-- Grid column -->
 
@@ -41,17 +41,15 @@
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
           <p>
-            <a href="#!">Your Account</a>
+            <a href="productdetails">Laptops</a>
           </p>
           <p>
-            <a href="#!">Become an Affiliate</a>
+            <a href="#!">Mobiles</a>
           </p>
           <p>
-            <a href="#!">Shipping Rates</a>
+            <a href="#!">Regrigerator</a>
           </p>
-          <p>
-            <a href="#!">Help</a>
-          </p>
+          
         </div>
 
         <!-- Grid column -->
@@ -61,13 +59,13 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
           <p>
-            <i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+            <i class="fa fa-home mr-3"></i> M.G Road, Banglore</p>
           <p>
             <i class="fa fa-envelope mr-3"></i> info@electronic.com</p>
           <p>
-            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+            <i class="fa fa-phone mr-3"></i> + 91 99898 873796</p>
           <p>
-            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+            <i class="fa fa-print mr-3"></i> + 91 96180 82842</p>
         </div>
         <!-- Grid column -->
 

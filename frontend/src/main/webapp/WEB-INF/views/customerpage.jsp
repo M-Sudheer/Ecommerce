@@ -21,30 +21,33 @@
 
 <h3>Welcome to Customer Page...!!!</h3>
 
-<%@include file="navbar.jsp" %>
+<%@include file="contextpaths.jsp" %>
 <nav class="navbar navbar-expand-sm bg-danger">
   <ul class="navbar-nav"> 
     <li class="nav-item">
-    	<a class="nav-link" href="customerprofile">Profile</a>
+    	<a class="nav-link" href="${contextPath}/customer/customerprofile">Profile</a>
     </li>
     
     
     <li class="nav-item">
-    	<a class="nav-link" href="editcustomer">Edit Profile</a>
+    	<a class="nav-link" href="${contextPath}/customer/editcustomer">Edit Profile</a>
     </li>
-    
+  <%--   <%@include file="navbar.jsp" %> --%>
  <li>
  
  </li>
     
   </ul>
 </nav>
-
-</body>
+<img alt="Pik" src="newpik.jpg">
 </body>
 </html>
 
 <style>
+body,h3
+{
+text-align:center;
+}
 h3
 {
 	padding-top:20px;

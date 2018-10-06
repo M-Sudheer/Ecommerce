@@ -33,59 +33,44 @@
 </head>
 
 <body>
-<%-- <springform:form action="update" method="post" modelAttribute="user">
+
+
+<springform:form action="update" method="post" modelAttribute="admin">
 <table>
 
 <tr>
-<td>user_id</td>
-<td><springform:input path="user_id" type="hidden"/></td>
+<td>id</td>
+<td><springform:input path="id" value="${admin.id}"type="hidden"/></td>
 </tr>
 
 <tr>
 <td>UserName:</td>
-<td><springform:input path="name"/></td>
+<td><springform:input path="name" value="${admin.name}"/></td>
 </tr>
-
-
 
 <tr>
 <td>Email:</td>
-<td><springform:input path="email"/></td>
-</tr>
-
-<tr>
-<td>Mobile Number:</td>
-<td><springform:input path="mobile"/></td>
-</tr>
-
-<tr>
-<td>Company Name</td>
-<td><springform:input path="companyName"/></td>
-</tr>
-
-<tr>
-<td>Role Name:</td>
-<td><springform:input path="role"/></td>
+<td><springform:input path="email" value="${admin.email}"/></td>
 </tr>
 
 <tr>
 <td>password</td>
-<td><springform:input path="password" type="hidden"/></td>
+<td><springform:input path="password" value="${admin.password}" type="hidden"/></td>
 </tr>
 
- --%>
+
  
  
  
- <div class="bg">
+ <%-- <div class="bg">
 			<div class="container-fluid bg">
 				<div class="row">
-						<springform:form  action="updateadmin" method="post" modelAttribute="admin">
+						<springform:form  action="signup" method="post" modelAttribute="vendor">
 			
-			<%-- <div class="form-group">
+			<div class="form-group">
 			<label for="v_id">User_Id</label>
 			<springform:input path="v_id" class="form-control" id="v_id" type="hidden"/>
-			</div> --%>
+			</div>
 			
 			<div class="form-group">
 			<label for="name">User Name:</label>	
@@ -96,15 +81,35 @@
 			<label for="email">Email Id:</label>
 			<springform:input path="email" class="form-control" id="email"/>
 			</div>
+			
+			
+			
+			
+			<div class="form-group">
+			<label for="mobile">Mobile Number:</label>	
+			<springform:input path="mobile" class="form-control" id="mobile"/>		
+			</div>	
 		
 			<div class="form-group">
-			<label for="password">Password:</label>	
-			<springform:input path="password" class="form-control" id="password"/>		
+			<label for="companyName">Company Name:</label>	
+			<springform:input path="companyName" class="form-control" id="companyName"/>		
+			</div>
+			
+			<div class="form-group">
+			<label for="role">Role:</label>
+			<springform:input path="role" class="form-control" id="role"/>
 			</div>
 			
 			
+			<div class="form-group">
+			<label for="password">Password:</label>	
+			<springform:input path="password" class="form-control" id="password" type="hidden"/>		
+			</div>
+			
+			
+			 --%>
  <tr>
-<td><input type="submit" value="UpdateAdmin"></td>
+<td><input type="submit" value="Update"></td>
 </tr>
 
 </table>

@@ -19,10 +19,68 @@
 </head>
 <body>
    
-	<form action="admin/adminloginprocess" method="post">
-   <input type="email" name="email"/>
-   <input type="password" name="password"/>
-   <input type="submit" value="Login"/>
-   </form>
+	
+  <div class="bg">
+		<div class="container-fluid bg">
+    		<div class="row">
+    		<form action="admin/adminloginprocess" method="post">
+ 		
+					<img src="${images}/icon.png"> 					
+ 						<div class="form-group">
+ 						
+ 						<i class="fas fa-envelope-open"></i>
+ 						<label for="email">Email Id:</label>
+ 						<input type="email" name="email"/>
+   				
+ 			</div>
+ 			
+ 			<div class="form-group">
+ 				<i class="fas fa-unlock"></i>
+   					<label for="pwd" >Password:</label>	
+   					<input type="password" name="password"/>
+   					
+ 			</div>
+ 			
+ 			
+ 			
+ 			<div class="form-group form-check">
+     			<input class="form-check-input" type="checkbox">
+     			<label class="form-check-label">Remember me</label>
+ 			</div>
+ 		<input type="submit" value="Login"/>
+	</form>	
+   </div> 
+   </div>
+   </div>
  </body>
 </html>
+<style>
+img
+{
+width:70%;
+padding-bottom:10px;
+padding-top:0px;
+padding-left:60px;
+}
+.row
+{
+padding-top:1px;
+}
+ .bg {
+        
+           background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Dark-Pink-Wallpapers-HD-Free-Download-620x388.jpg");
+         
+           width: 100%;
+           height: 100vh;
+           background-position: center;
+           background-repeat: no-repeat;
+           background-size: cover;
+       }
+       
+ form
+ {
+           padding-left: 600px;
+           padding-top: 150px;
+       }
+   
+ 

@@ -1,5 +1,7 @@
 package demo.project.tables.Imp;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import demo.project.tables.dao.AdminService;
 import demo.project.tables.model.Admin;
+import demo.project.tables.model.Vendor;
 
 @Component
 @Transactional
@@ -77,5 +80,32 @@ public class AdminServiceImp implements AdminService
 			// TODO: handle exception
 		}
 	}
+
+	@Override
+	public List<Vendor> getAllVendors() {
+		try {
+			Query<Vendor> query=sessionFactory.getCurrentSession().createQuery("from Vendor",Vendor.class);
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Admin getAdminByEmail(String email)
+	{
+		try {
+			Query<Admin> query=sessionFactory.getCurrentSession().createQuery("from Admin where email=:email",Admin.class).
+					setParameter("email",email);
+			return query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+			// TODO: handle exception
+		}
+			
+
 	}
 	

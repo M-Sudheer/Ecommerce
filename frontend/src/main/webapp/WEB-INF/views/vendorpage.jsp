@@ -19,10 +19,10 @@
 </head>
 
 <body>
-
+<center>
 <h3>Welcome to Vendor Page...!!!</h3>
-
-<%@include file="navbar.jsp" %>
+</center>
+<%-- <%@include file="navbar.jsp" %> --%>
 <nav class="navbar navbar-expand-sm bg-danger">
   <ul class="navbar-nav"> 
     <li class="nav-item">
@@ -34,9 +34,9 @@
     	<a class="nav-link" href="edit">Edit Profile</a>
     </li>
     
-    <li class="nav-item">
+    <!-- <li class="nav-item">
     	<a class="nav-link" href="vendor">Vendor Details</a>
-    </li>
+    </li> -->
     
     <li class="nav-item">
     	<a class="nav-link" href="category">Add Products</a>

@@ -86,8 +86,20 @@ public class ProductServiceImp implements ProductService
 		{
 			e.printStackTrace();
 			return 0;
-			// TODO: handle exception
+			
 		}		
 		
+	}
+
+	@Override
+	public List<Products> getProducts(int subc_id) {
+		try {
+            Query<Products> query=sessionFactory.getCurrentSession().createQuery("from Products where SubCategory_subc_id =: subc_id", Products.class);
+            query.setParameter("subc_id",subc_id);
+            return query.getResultList();
+        } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+        }
 	}
 }

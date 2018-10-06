@@ -35,6 +35,7 @@ import demo.project.tables.products.Laptop;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AppTest
 {
+	
 	@Autowired
 	private Vendor vendor;
 	@Autowired

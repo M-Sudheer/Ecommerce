@@ -18,33 +18,31 @@
 </head>
 <body>
 
-	<form action="customer/customerloginprocess" method="post">
-   <input type="email" name="email"/>
-   <input type="password" name="password"/>
-   <input type="submit" value="Login"/>
-   </form>
+	
+    
+    
+    
 
 
-
-
-
-    <%-- <div class="bg">
+    <div class="bg">
 		<div class="container-fluid bg">
     		<div class="row">
- 				<springform:form action="customerloginprocess" method="POST" modelAttribute="customerlogin" class="form-container">
+    		<form action="customer/customerloginprocess" method="post">
+ 		
 					<img src="${images}/icon.png"> 					
  						<div class="form-group">
  						
  						<i class="fas fa-envelope-open"></i>
  						<label for="email">Email Id:</label>
-   				<springform:input path="email" class="form-control" id="email"/>
+ 						<input type="email" name="email"/>
+   				
  			</div>
  			
  			<div class="form-group">
  				<i class="fas fa-unlock"></i>
    					<label for="pwd" >Password:</label>	
-   					<springform:input type="password" path="password" class="form-control" id="pwd" />
-   					<!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+   					<input type="password" name="password"/>
+   					
  			</div>
  			
  			
@@ -53,52 +51,14 @@
      			<input class="form-check-input" type="checkbox">
      			<label class="form-check-label">Remember me</label>
  			</div>
- 		<button type="submit" class="btn btn-success btn-block">login</button>
-	</springform:form>	
+ 		<input type="submit" value="Login"/>
+	</form>	
    </div> 
-   
-   
-   
-   <div id="login-box">
-
-
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
-
-		<form name='customerForm'
-		  action='customerlogin' method='POST'>
-
-		<table>
-			<tr>
-				<td>Email:</td>
-				<td><input path="email"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input path="password"/></td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-				  value="submit" /></td>
-			</tr>
-		  </table>
-
-		  <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-
-		</form>
-	</div>
-   
-   
-   
+   </div>
+   </div>
  </body>
 </html>
 <style>
-
 img
 {
 width:70%;
@@ -106,19 +66,16 @@ padding-bottom:10px;
 padding-top:0px;
 padding-left:60px;
 }
-
 .row
 {
 padding-top:1px;
 }
-
  .bg {
         
            background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Dark-Pink-Wallpapers-HD-Free-Download-620x388.jpg");
          
            width: 100%;
            height: 100vh;
-
            background-position: center;
            background-repeat: no-repeat;
            background-size: cover;
@@ -128,9 +85,6 @@ padding-top:1px;
  {
            padding-left: 600px;
            padding-top: 150px;
-}
-
-    --%>
-    </body>
-    </html>
+       }
    
+ 

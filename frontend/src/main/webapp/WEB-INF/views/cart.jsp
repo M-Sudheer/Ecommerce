@@ -22,24 +22,26 @@
 <table class="table">
 		<thead>
 			<tr>
-				<th>Brand</th>
+				
 				<th>Unit Price</th>
 				<th>Quantity</th>
 				<th>Total Price</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${cart.cartItems}" var="cartItems">
+			<c:forEach items="${cart.cartItems}" var="cartItem">
+			
 				<tr>
-					<td>${cartItems.cartItemIds[0].noOfProducts.products.brand}</td>
-					<td>${cartItems.cartItemIds[0].noOfProducts.products.price}</td>
-						<td>${cartItems.quantity}</td>
-					<td>${cartItems.cartItemIds[0].noOfProducts.products.price * cartItems.quantity}</td>
-					<td><a href="${contextPath}/customer/${cartItems.cartItem_id}">
+					
+					<td>${cartItem.cartItemIds[0].noOfProducts.product.price}</td>
+						<td>${cartItem.quantity}</td>
+					<td>${cartItem.cartItemIds[0].noOfProducts.product.price * cartItem.quantity}</td>
+					<td><a href="${contextPath}/customer/${cartItem.cartItem_id}">
 					<input type="button" value="Delete"></a></td>
 
 				</tr>
 			</c:forEach>
+			
 		</tbody>
 	</table>
 

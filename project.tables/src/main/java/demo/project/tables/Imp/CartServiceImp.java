@@ -31,8 +31,8 @@ public class CartServiceImp implements CartService {
 	@Override
 	public Cart getCart(int id) {
 		try {
-			return (Cart)sessionFactory.getCurrentSession().createQuery("from Cart where customer_id=:ids")
-					.setParameter("ids",id).getSingleResult();
+			return (Cart)sessionFactory.getCurrentSession().createQuery("from Cart where customer_id=:id")
+					.setParameter("id",id).getSingleResult();
 		} catch (Exception e) {
               e.printStackTrace();
 			return null;

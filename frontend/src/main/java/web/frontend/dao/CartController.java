@@ -217,7 +217,7 @@ public class CartController
 	{
 		Customer customer=customerService.getCustomerByEmail(principal.getName());
 		Cart cart=cartService.getCart(customer.getId());
-		
+		System.out.println(cart.getNetPrice());
 		model.addAttribute("cart",cart);
 		return "cart";
 	}

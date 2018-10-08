@@ -21,18 +21,15 @@ public class CustomerServiceImp  implements CustomerService
 	@Override
 	public boolean addCustomer(Customer customer) 
 	{
-		
 		try
 		{
 			sessionFactory.getCurrentSession().save(customer);
 			return true;
 		}
-		catch (Exception e) {
-			
-		
-		// TODO Auto-generated method stub
-		return false;
-	}
+		catch (Exception e) 
+		{
+			return false;
+		}
 	}
 
 	@Override

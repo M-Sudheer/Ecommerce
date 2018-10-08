@@ -101,7 +101,7 @@ public class IndexController
 		}
 	}
 	@GetMapping("/login")
-    public String getUser()
+    public String getVendor()
     {
         return "login";
     }

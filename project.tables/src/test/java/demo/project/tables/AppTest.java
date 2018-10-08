@@ -27,6 +27,7 @@ import demo.project.tables.model.CartItemId;
 import demo.project.tables.model.CartItems;
 import demo.project.tables.model.Category;
 import demo.project.tables.model.Customer;
+import demo.project.tables.model.Products;
 import demo.project.tables.model.SubCategory;
 import demo.project.tables.model.Vendor;
 import demo.project.tables.products.Laptop;
@@ -44,6 +45,8 @@ public class AppTest
 	private SubCategory subCategory;
 	@Autowired
 	private Laptop laptop;
+	@Autowired
+	private Products products;
 	
 	@Autowired
 	private Cart cart;

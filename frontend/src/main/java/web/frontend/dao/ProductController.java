@@ -38,8 +38,6 @@ import demo.project.tables.productsDao.MobileService;
 @Controller
 public class ProductController 
 {
-
-	
 	@Autowired
 	private Vendor vendor;
 	@Autowired
@@ -83,11 +81,13 @@ public class ProductController
 	
 
 	@PostMapping("/vendor/getModel")
-	public String  addProducts(HttpServletRequest request,Model model,HttpSession session) {
+	public String  addProducts(HttpServletRequest request,Model model,HttpSession session,Principal principal) {
 		
 	   
 		SubCategory subCategory=subCategoryService.getSubCategory(Integer.parseInt(request.getParameter("subc_id")));
 		model.addAttribute("subc_id",subCategory.getSubc_id());
+		Vendor vendor=vendorService.getVendorByEmail(principal.getName());
+		session.setAttribute("vendor", vendor);
 		
 	  switch(subCategory.getSubc_name())
 		{
@@ -119,6 +119,8 @@ public class ProductController
 	   Vendor vendor=(Vendor)httpSession.getAttribute("vendor");
 		laptop.setVendor(vendor);
 		laptop.setSubCategory(subCategory);
+		List<NoOfProducts> noOfProducts=listOfProducts(laptop);
+		laptop.setNoOfProduct(noOfProducts);
 		
 		if(laptopService.addLaptop(laptop))
 		{
@@ -163,6 +165,19 @@ public class ProductController
 	
 	}
 	
+	
+	
+	private List<NoOfProducts> listOfProducts(Products products)
+    {
+        List<NoOfProducts> noOfProductsList=new ArrayList<NoOfProducts>();
+        for(int i=1;i<=products.getNoOfProducts();i++)
+        {
+            NoOfProducts noOfProducts=new NoOfProducts();
+            noOfProducts.setProduct(products);
+            noOfProductsList.add(noOfProducts);
+        }    
+        return noOfProductsList;
+}
 	
 	@PostMapping("/vendor/mobileprocess")
 	public String addMobile(@ModelAttribute("mobile") Mobile mobile,HttpSession httpSession,HttpServletRequest httpServletRequest)

@@ -106,7 +106,7 @@ public class ProductServiceImp implements ProductService
 	@Override
 	public Products getProduct(int product_id) {
 		try {
-			Query<Products> query=sessionFactory.getCurrentSession().createQuery("from Product where product_id =:id" , Products.class);
+			Query<Products> query=sessionFactory.getCurrentSession().createQuery("from Products where product_id =:id" , Products.class);
 			query.setParameter("id",product_id);
 			return query.getSingleResult();
 			

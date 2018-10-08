@@ -20,7 +20,8 @@ public class Laptop extends Products
 		return processor;
 	}
 
-	public void setProcessor(String processor) {
+	public void setProcessor(String processor) 
+	{
 		this.processor = processor;
 	}
 
@@ -47,8 +48,4 @@ public class Laptop extends Products
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-
-	
-	
-
 }

@@ -30,8 +30,8 @@ import demo.project.tables.model.Products;
 
 
 @Controller
-public class CartController {
-
+public class CartController
+{
 	@Autowired
 	private NoOfProductsService noOfProductsService;
 
@@ -60,24 +60,29 @@ public class CartController {
 	private ProductService productService;
 
 	@Autowired
+	private Products products;
+	
+	@Autowired
 	private Cart cart;
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	@Autowired
 	private NoOfProducts noOfProducts;
 
 	@GetMapping("/customer/addtocart")
-	public String addToCart(Principal principal, HttpServletRequest request) {
-
+	public String addToCart(Principal principal, HttpServletRequest request) 
+	{
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int quantity = Integer.parseInt(request.getParameter("noOfProducts"));
 		int unitprice = productService.getProduct(product_id).getPrice();
+		System.out.println(productService.getProduct(product_id).getPrice());
 		Products products=productService.getProduct(product_id);
 		customer=customerService.getCustomerByEmail(principal.getName());
 
-		if (checkAvailabilityOfProducts(product_id, quantity) == true) {
-
+		if (checkAvailabilityOfProducts(product_id,quantity)==true)
+		{
 			cart = cartService.getCart(customer.getId());
 			
 			if (cart == null) {
@@ -116,7 +121,8 @@ public class CartController {
 
 				cartItems = checkIfProductAlreadyExists(product_id, cart);
 
-				if (cartItems != null) {
+				if (cartItems != null) 
+				{
 
 					List<CartItemId> cartItemIdsList = new ArrayList<CartItemId>();
 					List<CartItems> cartItemsList = new ArrayList<CartItems>();
@@ -176,29 +182,34 @@ public class CartController {
 
 		} else {
 
-			return  "redirect:/customer/customerindex";
+			return  "redirect:/customer/customerpage";
 		}
 
 	}
 
-	public CartItems checkIfProductAlreadyExists(int product_id, Cart cart) {
+	public CartItems checkIfProductAlreadyExists(int product_id, Cart cart) 
+	{
 		
 		List<CartItems> cartItemsList = cart.getCartItems();
-		for (CartItems items : cartItemsList) {
-			if (items.getCartItemIds().get(0).getNoOfProducts().getProduct().getProduct_id() == product_id) {
+		for (CartItems items : cartItemsList)
+		{
+				if (items.getCartItemIds().get(0).getNoOfProducts().getProduct().getProduct_id() == product_id) {
 				return items;
-			}
+		}
 		}
 		return null;
 	}
 
-	public boolean checkAvailabilityOfProducts(int product_id, int quantity) {
-		
-		if (noOfProductsService.getNoOfProducts(product_id).size() >= quantity) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean checkAvailabilityOfProducts(int product_id, int quantity) 
+	{
+			if (noOfProductsService.getNoOfProducts(product_id).size() >= quantity) 
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 	}
 	
 	@GetMapping("/customer/cart")
@@ -206,24 +217,9 @@ public class CartController {
 	{
 		Customer customer=customerService.getCustomerByEmail(principal.getName());
 		Cart cart=cartService.getCart(customer.getId());
-		List<Products> products=new ArrayList<Products>();
-		List<CartItems> cartItems=new Stack<CartItems>();
-		cartItems= cartItemsService.getAllCartItemsByCartId(cart.getCart_id());
-		List<CartItemId> cartItemId=new ArrayList<CartItemId>();
 		
-		List<String> subcategoryname=new ArrayList<String>();
-		
-		for(CartItems items:cartItems)
-		{
-			cartItemId=cartItemIdService.getAllCartItemId(items.getCartItem_id());
-			products.add(cartItemId.get(0).getNoOfProducts().getProduct());
-		    subcategoryname.add(cartItemId.get(0).getNoOfProducts().getProduct().getSubCategory().getSubc_name());
-		}
-		
-		model.addAttribute("product",products);
-		model.addAttribute("name",subcategoryname);
-		model.addAttribute("cartitem",cartItems);
+		model.addAttribute("cart",cart);
 		return "cart";
-}
+	}
 
 }

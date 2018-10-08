@@ -24,6 +24,14 @@ public class Vendor
 	/*@NotNull(message="name should not be null")
 	@NotBlank(message="name should not be blank")*/
 	private String name;
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	/*@NotNull(message="email should not be null")
 	@NotBlank(message="email should not be blank")
 	@Pattern(regexp="/^([a-zA-Z]+)@([a-sA-Z0-9]+).([a-z])",message="Enter a proper email id format")*/
@@ -120,9 +128,11 @@ public class Vendor
 	@Override
 	public String toString() {
 		return "Vendor [v_id=" + v_id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", companyName="
-				+ companyName + ", password=" + password + ", products="
+				+ companyName + ", password=" + password + ", role=" + role + ", status=" + status + ", products="
 				+ products + "]";
 	}
+
+	
 
 
 

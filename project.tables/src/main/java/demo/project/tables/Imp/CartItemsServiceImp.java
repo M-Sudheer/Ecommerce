@@ -58,7 +58,8 @@ public class CartItemsServiceImp implements CartItemsService {
 	@Override
 	public List<CartItems> getAllCartItemsByCartId(int cart_id) {
 
-		try {
+		try 
+		{
 			return sessionFactory.getCurrentSession()
 					.createQuery("from CartItems where cart_cart_id=:id", CartItems.class).setParameter("id", cart_id)
 					.getResultList();

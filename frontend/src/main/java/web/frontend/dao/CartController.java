@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import demo.project.tables.dao.CartItemIdService;
@@ -85,8 +86,8 @@ public class CartController
 		{
 			cart = cartService.getCart(customer.getId());
 			
-			if (cart == null) {
-				
+			if (cart == null) 
+			{
 				cart = new Cart();
 				cartItems = new CartItems();
 				List<CartItemId> cartItemIdList = new ArrayList<CartItemId>();
@@ -222,4 +223,16 @@ public class CartController
 		return "cart";
 	}
 
+	@GetMapping("customer/{cartItem_id}")
+	public String deleteCart(@PathVariable("cartItem_id") int cartItem_id)
+	{
+		CartItems cartItems=cartItemsService.getCartItemId(cartItem_id);
+		Cart cart=cartItems.getCart();
+		cart.setNoOfItems(cart.getNoOfItems()-cartItems.getQuantity());
+		cart.setNetPrice(cart.getNetPrice()-cartItems.getTotalPrice());
+		cartService.updateCart(cart);
+		cartItemsService.deleteCartItem(cartItems);
+		return "redirect:/customer/customerpage";
+		
+	}	
 }

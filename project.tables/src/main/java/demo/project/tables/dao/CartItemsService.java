@@ -16,4 +16,6 @@ public interface CartItemsService {
 	public CartItems getCartItemByCartId(int cart_id);
 
 	public boolean deleteAllCartItems(int cart_id);
+	
+	public CartItems getCartItemId(int cartItem_id);
 }

@@ -24,7 +24,8 @@ public class NoOfProducts
 		return itemNo;
 	}
 
-	public void setItemNo(int itemNo) {
+	public void setItemNo(int itemNo)
+	{
 		this.itemNo = itemNo;
 	}
 
@@ -32,7 +33,8 @@ public class NoOfProducts
 		return sold;
 	}
 
-	public void setSold(boolean sold) {
+	public void setSold(boolean sold)
+	{
 		this.sold = sold;
 	}
 

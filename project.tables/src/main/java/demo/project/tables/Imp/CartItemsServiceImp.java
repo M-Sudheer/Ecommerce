@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -91,5 +92,22 @@ public class CartItemsServiceImp implements CartItemsService {
 			return false;
 		}
 	}
+
+	@Override
+	public CartItems getCartItemId(int cartItem_id) 
+	
+	{
+		try
+		{
+			Query<CartItems> query=sessionFactory.getCurrentSession().createQuery("from CartItems where cartItem_id=:id",CartItems.class);
+			query.setParameter("id",cartItem_id);
+			return query.getSingleResult();
+		}
+		catch (Exception e) 
+		{
+			return null;
+			
+		}
+		}
 
 }
